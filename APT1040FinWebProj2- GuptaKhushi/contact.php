@@ -2,8 +2,7 @@
 // Include config file
 require_once "config.php";
 
-$connection = mysql_connect("localhost", "root", ""); // Establishing Connection with Server
-$db = mysql_select_db("wd_conf", $connection); // Selecting Database from Server
+$connection = new mysqli("localhost", "root", "", "wd_conf"); // Establishing Connection with Server // Selecting Database from Server
 if(isset($_POST['submit'])){ // Fetching variables of the form which travels in URL
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -16,9 +15,9 @@ if(isset($_POST['submit'])){ // Fetching variables of the form which travels in 
     {  
        $chk .= $chk1.",";  
     }  
-    $query = mysql_query("INSERT INTO `contacts`( `fname`, `lname`, `gender`,`refferal`, `email`, `address`) VALUES ('$fname', '$lname', '$gender','$chk','$email', '$address');");
+    $query = ("INSERT INTO `contacts`( `fname`, `lname`, `gender`,`refferal`, `email`, `address`) VALUES ('$fname', '$lname', '$gender','$chk','$email', '$address');");
      
-
+    $connection->query($query);
     header("location: index.php");
     }
     mysql_close($connection); // Closing Connection with Server

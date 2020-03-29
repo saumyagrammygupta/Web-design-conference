@@ -7,28 +7,7 @@
 </head>
 
 <body>
-    <div class="site-wrap">
-        <header class="site-navbar" role="banner">
-            <div class="container">
-                <nav class="site-navigation position-relative text-right" role="navigation">
-                    <ul class="site-menu">
-                        <li class="cta"><a href="index.php">Home</a></li>
-                        <li class="cta"><a href="about.html">About Us</a></li>
-                        <li class="cta"><a href="contact.php">Registration</a></li>
-                        <li class="cta"><a href="speakers.html">Speakers</a></li>
-                        <li class="cta"><a href="aboutme.html">About Me</a></li>
-                        <li class="cta"><a href="features.html">Features</a></li>
-                        <li class="cta"><a href="programs.html">Program schedule</a></li>
-                        <li class="cta"><a href="gallery.html">Gallery</a></li>
-                        <li class="cta"><a href="buy-tickets.html">Buy Tickets</a></li>
-
-
-                    </ul>
-                </nav>
-                <div style="position: relative; top: 3px;"><a href="#"><span class="icon-menu h3"></span></a></div>
-            </div>
-    </div>
-    </div>
+    <?php include("modularized/navigation.php")?>
     </header>
     <div class="site-section site-hero">
         <div class="container row">

@@ -2,8 +2,7 @@
 // Include config file
 require_once "config.php";
 
-$connection = new mysqli("localhost", "root", "", "wd_conf"); // Establishing Connection with Server // Selecting Database from Server
-if(isset($_POST['submit'])){ // Fetching variables of the form which travels in URL
+if (isset($_POST['submit'])) { // Fetching variables of the form which travels in URL
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $gender = $_POST['gender'];
@@ -11,16 +10,15 @@ if(isset($_POST['submit'])){ // Fetching variables of the form which travels in 
     $address = $_POST['address'];
     $refferal = $_POST['refferal'];
     $chk="";
-    foreach($refferal as $chk1)  
-    {  
-       $chk .= $chk1.",";  
-    }  
+    foreach ($refferal as $chk1) {
+        $chk .= $chk1.",";
+    }
     $query = ("INSERT INTO `contacts`( `fname`, `lname`, `gender`,`refferal`, `email`, `address`) VALUES ('$fname', '$lname', '$gender','$chk','$email', '$address');");
      
-    $connection->query($query);
+    $mysqli->query($query);
     header("location: index.php");
-    }
-    mysql_close($connection); // Closing Connection with Server
+}
+   $mysqli->close(); // Closing Connection with Server
 
 ?>
 <!DOCTYPE html>
@@ -29,34 +27,12 @@ if(isset($_POST['submit'])){ // Fetching variables of the form which travels in 
 <head>
     <title>Workshop Website</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="site-wrap">
-        <header class="site-navbar" role="banner">
-            <div class="container">
-                <div class="row align-items-center">
-                    <nav class="site-navigation position-relative text-right" role="navigation">
-                        <ul class="site-menu">
-                            <li class="cta"><a href="index.php">Home</a></li>
-                            <li class="cta"><a href="about.html">About Us</a></li>
-                            <li class="cta"><a href="contact.php">Registration</a></li>
-                            <li class="cta"><a href="speakers.html">Speakers</a></li>
-                            <li class="cta"><a href="aboutme.html">About Me</a></li>
-                            <li class="cta"><a href="features.html">Features</a></li>
-                            <li class="cta"><a href="programs.html">Program schedule</a></li>
-                            <li class="cta"><a href="gallery.html">Gallery</a></li>
-                            <li class="cta"><a href="buy-tickets.html">Buy Tickets</a></li>
-
-
-                        </ul>
-                    </nav>
-                    <div style="position: relative; top: 3px;"><a href="#"><span class="icon-menu h3"></span></a></div>
-                </div>
-            </div>
-    </div>
+    <?php include("modularized/navigation.php")?>
     </header>
 
     <div class="container">
@@ -79,83 +55,48 @@ if(isset($_POST['submit'])){ // Fetching variables of the form which travels in 
 
             <form method="post">
                 <div class="form-group">
-                    <label class="" width="40%">First Name</label>
-                    <input type="text" id="fname" name="fname" class="form-control">
+                    <label class="">First Name</label>
+                    <input type="text" id="fname" name="fname" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label class="" for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lname" class="form-control">
+                    <input type="text" id="lname" name="lname" class="form-control" required>
                 </div>
                 <label class="" for="gender">Gender:</label>
                 <div class="form-group">
                     <input type="radio" name="gender" value="female">Female<br>
                     <input type="radio" name="gender" value="male">Male<br>
                 </div>
-                <label class="" for="where">Where did you hear about us?</label>
+                <label class="" for="where">Where did you hear about us?</label><br>
                 <input type="checkbox" name="refferal[]" value="friend">Friend<br>
                 <input type="checkbox" name="refferal[]" value="google">Google <br>
                 <input type="checkbox" name="refferal[]" value="blog_post">Blog post<br>
 
                 <div class="form-group">
                     <label class="" for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control">
+                    <input type="email" id="email" name="email" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label class="label" for="subject">Address</label>
-                    <input type="address" name="address" class="form-control">
+                    <input type="address" name="address" class="form-control" required>
                 </div>
-                <div class="form-group">
-                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-                </div>
+
+                <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+
             </form>
             <div>
-                <p>Address</p>
-                <p>203 Fake St. Mountain View, San Francisco, California, USA</p>
+                <h2>Address</h2>
+                203 Fake St. Mountain View, San Francisco, California, USA
 
-                <p>Phone</p>
+                <h2>Phone</h2>
                 <p><a href="#">+1 232 3235 324</a></p>
 
-                <p>Email Address</p>
+                <h2>Email Address</h2>
                 <p><a href="#">webdesignconference@gmail.com</a></p>
             </div>
         </div>
     </div>
-    <footer class="site-footer">
-        <div class="container foot-row">
-            <div class="foot-col">
-                <h2>About Event</h2>
-                <p>
-                    This is a Web Design Conference. Here many Renowned web designers shall
-                    be speaking about their experience and their journey through out their career.
-                </p>
-            </div>
-            <div class="foot-col">
-                <h2>Quick Links</h2>
-                <ul class="list-unstyled">
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Speakers</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </div>
-
-            <div class="foot-col">
-                <h2>Connect with Us</h2>
-                <p>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Youtube</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
-                </p>
-            </div>
-            <div class="foot-col">
-                <p>
-                    Copyright © Khushi Gupta 2019 All rights reserved
-                </p>
-            </div>
-    </footer>
+    <?php include("modularized/footer.php")?>
 </body>
 
 </html>

@@ -1,11 +1,11 @@
 body {
     line-height: 1.7;
     color: #cfcfd1;
+    margin: 0;
     font-weight: 300;
     font-size: 1rem;
     background: #232531;
     width: 100%;
-    overflow-x: hidden;
     font-family: "Roboto Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -557,7 +557,8 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 }
 
 .bio {
-    margin: 30px;
+    padding: 30px;
+    width: auto;
 }
 
 .list-unstyled>li>a {
@@ -607,12 +608,9 @@ a {
     padding: 40px;
 }
 
-.wrapper {
-    width: 100%;
-}
-
 .wrapper>img {
     width: 50%;
+    object-fit: contain;
     height: auto;
 }
 
@@ -634,9 +632,7 @@ a {
 }
 
 table {
-    border: 1px solid white;
     margin-bottom: 20px;
-    border-collapse: collapse;
 }
 
 th, td {
